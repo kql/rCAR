@@ -1,0 +1,198 @@
+﻿DATA_PARAMETERS START
+   DataGuid             = {0B86B22B-1A49-411A-9657-4A4BDA3D3ED8}
+   CurrentSessionLabel  = 
+   DataByteOrder        = INTEL
+   DataSampOrder        = SAMP
+   AmplifierInfo        = 
+   Comments             = 
+   FileHistory          = 1 file:¶	C:\CURRY 8 Tutorials\Acquisition\Blink Reduction\Viscpt.cnt  4071 kB 65030 samples 9/6/2001 6:50:18 PM¶¶1 EEG group,1 other group, 32 channels¶65030 samples, 250.0 Hz sampling rate¶duration: 260.1 s, start latency / trigger offset: 0.0 ms¶¶209 events, 4 event types¶¶EEG group 1: 31 channels, reference: <None>¶¶2 bad blocks:¶start:   48.984 s, duration:    7.896 s¶start:  103.012 s, duration:    8.300 s¶
+   FileVersion          =  800
+   NumSessions          =  1
+   CurrentSession       =  0
+   DataFormat           =  6
+   FrequencyDomain      =  0
+   NumSamples           =  1071
+   NumTrials            =  1
+   NumChannels          =  32
+   NumGroups            =  2
+   NumMagGroups         =  0
+   NumElGroups          =  1
+   NumLinesSkip         =  0
+   NumColumnsSkip       =  0
+   DecimalSymbol        =  0
+   StartYear            =  0
+   StartMonth           =  0
+   StartDay             =  0
+   StartHour            = -1
+   StartMin             =  0
+   StartSec             =  0
+   StartMillisec        =  0
+   SampleTimeUsec       =  4000
+   SampleFreqHz         =  250
+   TriggerOffsetUsec    =  7.3392e+007
+   TriggerOffsetHz      =  0
+DATA_PARAMETERS END
+
+DEVICE_PARAMETERS START
+   DataUnit             = uV
+   NumChanThisGroup     =  31
+   NumSensorsThisGroup  =  31
+   CommonOffset         =  0
+   NumRefChannels       =  0
+   Transform            =  6
+   CommonScale          =  1
+DEVICE_PARAMETERS END
+
+DEVICE_PARAMETERS_OTHERS START
+   DataUnit             = uV
+   NumChanThisGroup     =  1
+   NumSensorsThisGroup  =  1
+   CommonOffset         =  0
+   NumRefChannels       =  0
+   Transform            =  0
+   CommonScale          =  1
+DEVICE_PARAMETERS_OTHERS END
+
+LABELS START
+   ListDescription      = SensorLabels
+   ListUnits            = 
+   ListNrColumns        =  260
+   ListNrRows           =  31
+   ListNrTimepts        =  1
+   ListNrBlocks         =  1
+   ListBinary           =  0
+   ListType             =  5
+   ListTrafoType        =  0
+   ListGridType         =  2
+   ListFirstColumn      =  1
+   ListIndexMin         = -1
+   ListIndexMax         = -1
+   ListIndexAbsMax      = -1
+LABELS END
+
+LABELS START_LIST	# Do not edit!
+FP1
+F3
+C3
+P3
+O1
+F7
+T3
+T5
+FZ
+FCZ
+CP3
+FC3
+TP7
+FPZ
+FT7
+FP2
+F4
+C4
+P4
+O2
+F8
+T4
+T6
+CZ
+PZ
+CPZ
+CP4
+FC4
+TP8
+OZ
+FT8
+LABELS END_LIST
+
+GEOMETRY START
+   HelmetSystem         =  0
+   PlanarSensors        =  0
+   SensorShape          = -1
+   SensorOrder          =  0
+   SensorStatus         =  6
+   SensorDiameterXMm    =  10
+   SensorDiameterYMm    =  10
+GEOMETRY END
+
+SENSORS START
+   ListDescription      = Sensors
+   ListUnits            = mm
+   ListNrColumns        =  3
+   ListNrRows           =  31
+   ListNrTimepts        =  1
+   ListNrBlocks         =  1
+   ListBinary           =  0
+   ListType             =  1
+   ListTrafoType        =  0
+   ListGridType         =  2
+   ListFirstColumn      =  1
+   ListIndexMin         = -1
+   ListIndexMax         = -1
+   ListIndexAbsMax      = -1
+SENSORS END
+
+SENSORS START_LIST	# Do not edit!
+  29	-106.5	 32.9
+  51	-81.5	 86.1
+  71	-17.6	 116.7
+  57	 56.3	 113.3
+  31	 92.2	 64.1
+  70	-65.1	 31.7
+  85	-6.5	 38.5
+  74	 51.6	 49.3
+ -0	-92.6	 112
+ -0	-61.4	 137.8
+  69	 21	 122.3
+  63	-53.1	 101.5
+  84	 22.2	 42.9
+ -0	-112.2	 38.3
+  79	-36.2	 34
+ -29	-107.5	 32.8
+ -53	-82.3	 84
+ -71	-18.4	 114.6
+ -58	 53.4	 111.9
+ -31	 91.2	 64
+ -70	-64.1	 31.8
+ -84	-8.5	 38.3
+ -73	 50.6	 49.2
+ -1	-23.3	 156.4
+ -0	 55	 141.3
+ -1	 18.6	 160.2
+ -70	 19.4	 119
+ -65	-54.1	 101.4
+ -84	 22.2	 42.9
+ -0	 94.5	 70.4
+ -79	-36.2	 34
+SENSORS END_LIST
+
+LABELS_OTHERS START
+   ListDescription      = SensorLabels
+   ListUnits            = 
+   ListNrColumns        =  260
+   ListNrRows           =  1
+   ListNrTimepts        =  1
+   ListNrBlocks         =  1
+   ListBinary           =  0
+   ListType             =  5
+   ListTrafoType        =  0
+   ListGridType         =  2
+   ListFirstColumn      =  1
+   ListIndexMin         = -1
+   ListIndexMax         = -1
+   ListIndexAbsMax      = -1
+LABELS_OTHERS END
+
+LABELS_OTHERS START_LIST	# Do not edit!
+VEOG
+LABELS_OTHERS END_LIST
+
+FUNCTIONAL_DATA START
+   DataInterpolChannels = 
+   DataChannelInterpol  = 
+   NumBadBlocks         =  0
+   DataDeselEpochs      = 0 ...
+   DataInterpolNeighbors = 0 ...
+   BadBlockStart        = 0 ...
+   BadBlockDuration     = 0 ...
+FUNCTIONAL_DATA END
+

@@ -1,0 +1,107 @@
+Brain Vision Data Exchange Header File Version 2.0
+; Data created from history path: Sample data BVA/Raw Data
+
+[Common Infos]
+Codepage=UTF-8
+DataFile=Sample data BVA_Multiplexed.eeg
+MarkerFile=Sample data BVA_Multiplexed.vmrk
+DataFormat=BINARY
+; Data orientation: VECTORIZED=ch1,pt1, ch1,pt2..., MULTIPLEXED=ch1,pt1, ch2,pt1 ...
+DataOrientation=MULTIPLEXED
+DataType=TIMEDOMAIN
+NumberOfChannels=32
+DataPoints=1071
+; Sampling interval in microseconds if time domain (convert to Hertz:
+; 1000000 / SamplingInterval) or in Hertz if frequency domain:
+SamplingInterval=4000
+
+[User Infos]
+; Each entry: Prop<Number>=<Type>,<Name>,<Value>,<Value2>,...,<ValueN>
+; Property number must be unique. Types can be int, single, string, bool, byte, double, uint
+; or arrays of those, indicated int-array etc
+; Array types have more than one value, number of values determines size of array.
+; Fields are delimited by commas, commas in strings are written \1
+
+[Binary Infos]
+BinaryFormat=IEEE_FLOAT_32
+
+[Channel Infos]
+; Each entry: Ch<Channel number>=<Name>,<Reference channel name>,
+; <Resolution in "Unit">,<Unit>, Future extensions...
+; Fields are delimited by commas, some fields might be omitted (empty).
+; Commas in channel names are coded as "\1".
+Ch1=FP1,,,µV
+Ch2=F3,,,µV
+Ch3=C3,,,µV
+Ch4=P3,,,µV
+Ch5=O1,,,µV
+Ch6=F7,,,µV
+Ch7=T3,,,µV
+Ch8=T5,,,µV
+Ch9=FZ,,,µV
+Ch10=FCZ,,,µV
+Ch11=CP3,,,µV
+Ch12=FC3,,,µV
+Ch13=TP7,,,µV
+Ch14=FPZ,,,µV
+Ch15=FT7,,,µV
+Ch16=FP2,,,µV
+Ch17=F4,,,µV
+Ch18=C4,,,µV
+Ch19=P4,,,µV
+Ch20=O2,,,µV
+Ch21=F8,,,µV
+Ch22=T4,,,µV
+Ch23=T6,,,µV
+Ch24=CZ,,,µV
+Ch25=PZ,,,µV
+Ch26=CPZ,,,µV
+Ch27=CP4,,,µV
+Ch28=FC4,,,µV
+Ch29=TP8,,,µV
+Ch30=OZ,,,µV
+Ch31=FT8,,,µV
+Ch32=VEOG,,,µV
+
+[Channel User Infos]
+; Each entry: Prop<Number>=Ch<ChannelNumber>,<Type>,<Name>,<Value>,<Value2>,...,<ValueN>
+; Property number must be unique. Types can be int, single, string, bool, byte, double, uint
+; or arrays of those, indicated int-array etc
+; Array types have more than one value, number of values determines size of array.
+; Fields are delimited by commas, commas in strings are written \1
+; Properties are assigned to channels using their channel number.
+
+[Coordinates]
+; Each entry: Ch<Channel number>=<Radius>,<Theta>,<Phi>
+Ch1=1,-90,-72
+Ch2=1,-60,-51
+Ch3=1,-45,0
+Ch4=1,-60,51
+Ch5=1,-90,72
+Ch6=1,-90,-36
+Ch7=1,-90,0
+Ch8=1,-90,36
+Ch9=1,45,90
+Ch10=1,23,90
+Ch11=1,-49,29
+Ch12=1,-49,-29
+Ch13=1,-90,18
+Ch14=1,90,90
+Ch15=1,-90,-18
+Ch16=1,90,72
+Ch17=1,60,51
+Ch18=1,45,0
+Ch19=1,60,-51
+Ch20=1,90,-72
+Ch21=1,90,36
+Ch22=1,90,0
+Ch23=1,90,-36
+Ch24=1,0,0
+Ch25=1,45,-90
+Ch26=1,22,-90
+Ch27=1,49,-29
+Ch28=1,49,29
+Ch29=1,90,-18
+Ch30=1,90,-90
+Ch31=1,90,18
+Ch32=0,0,0
