@@ -11,7 +11,7 @@
 % Free Software Foundation (either version 3, or at your option any later 
 % version). 
 %
-% We hope that owr contribution is helpful to other researchers who wish to 
+% We hope that our contribution is helpful to other researchers who wish to 
 % apply rCAR to their data files. We would like to keep a record of rCAR 
 % users. It would be nice if you could send us an email and mention in your 
 % paper(s) if you have used rCAR re-reference procedure and software to 
