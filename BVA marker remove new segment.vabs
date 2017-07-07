@@ -1,0 +1,53 @@
+' Markers Remover: New Segment
+' 
+' This macro removes different marker types (i.e. New Segment) 
+
+Sub Main
+	If Not ActiveNode.DataAvailable Then
+		MsgBox "Open a Node of data set to work with this macro.", vbExclamation, "Attention!"
+		Exit Sub
+	End If
+	Dim nhn As New NewHistoryNode
+	nhn.Create "Remove New Segment Marker", ActiveNode
+	Dim Mks As Markers
+	Dim mk As Marker
+	Dim i As Long
+	Set Mks = ActiveNode.Dataset.Markers
+	
+	Dim Valore As String
+	Dim Testo As String
+	Testo = ""
+	
+	Valore = "New Segment"
+
+
+	
+	Dim pb As New ProgressBar
+	pb.Init "Marker Remove", "This operation will take few seconds"
+	pb.SetRange 0, Mks.Count
+	pb.SetStep 1
+
+	For Each mk In Mks		
+		 If mk.Type = Valore Then   ' Nome Marker Ttype
+		 	 Testo = Valore
+			 i = i + 1
+				nhn.RemoveMarker mk.ChannelNumber, mk.Position, mk.Points, mk.Type, mk.Description
+		 End If
+			pb.StepIt
+	Next
+
+	If Testo <> Valore Then
+		Errore
+		Exit Sub
+	End If
+
+	pb.SetText "Done!"
+	Wait 1
+	nhn.Finish
+End Sub
+Sub Errore
+
+	MsgBox "       " & "This Marker Type do not exist!" & Chr(13) & "Repeat this operation with a correct Marker Type.", vbExclamation, "Error"
+
+End Sub
+
