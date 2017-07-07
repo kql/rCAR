@@ -18,6 +18,9 @@
 % Dr Giorgio Fuggetta, Roehampton University, London, UK
 % Email: giorgio.fuggetta@roehampton.ac.uk
 %
+% Dr Kyle Q. Lepage
+% Email: kyle.lepage@gmail.com
+%
 % This script/program is free software; you can redistribute it and/or
 % modify it under the terms of the GNU General Public License as published
 % by the Free Software Foundation; either version 3 of the License, or

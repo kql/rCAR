@@ -6,13 +6,16 @@
 %
 % Copyright (C) 2017    Version 0.6     Release date: 06 July 2017
 %
-% Authors: Dr Phil Duke and Dr Giorgio Fuggetta
+% Authors: Dr Phil Duke, Dr Giorgio Fuggetta, and Dr. Kyle Q. Lepage
 %
 % Dr Phil Duke, University of Leicester, Leicester, UK
 % Email: pad11@leicester.ac.uk
 %
 % Dr Giorgio Fuggetta, Roehampton University, London, UK
 % Email: giorgio.fuggetta@roehampton.ac.uk
+%
+% Dr Kyle Q. Lepage
+% Email: kyle.lepage@gmail.com
 %
 % This script/program is free software; you can redistribute it and/or
 % modify it under the terms of the GNU General Public License as published
