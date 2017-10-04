@@ -149,7 +149,6 @@ function edit1_Callback(hObject, eventdata, handles)
 %        str2double(get(hObject,'String')) returns contents of edit1 as a double
 
 
-
 % --- Executes during object creation, after setting all properties.
 function edit1_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to edit1 (see GCBO)
@@ -167,15 +166,12 @@ end
 % --- Executes on button press in pushbutton1.
 % select input file(s)
 function pushbutton1_Callback(hObject, eventdata, handles)
-% hObject    handle to edit1 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
 
 [fn pn]=uigetfile({'*.bdf','BioSemi (*.bdf)';...
     '*.cdt','NeuroScan CURRY (*.cdt)';...
     '*.cnt','NeuroScan continuous (*.cnt)';...
     '*.edf','European Data Format (*.edf)';...
-    '*.vhdr','Brain vision Analyzer BVA (*.vhdr)'}, 'Select Input Files', 'MultiSelect', 'on' );
+    '*.vhdr','BrainAmp / BrainVision (*.vhdr)'}, 'Select Input Files', 'MultiSelect', 'on' );
 
 if ~isequal(fn,0) % proceed only if a file is selected
     
@@ -187,6 +183,7 @@ if ~isequal(fn,0) % proceed only if a file is selected
     end
     
     handles.data.totalFiles = totalFiles;
+    % handles.data.output_folder = output_folder;
     handles.data.fn = fn;
     handles.data.pn = pn;
     
@@ -406,6 +403,7 @@ load ([handles.data.pathstr '\default.mat'], 'exc', 'ref');
 handles.listbox2.Value=1;
 handles.listbox2.String = exc;
 handles.edit1.String = ref;
+
 guidata(hObject,handles);
 
 
@@ -416,6 +414,7 @@ function pushbutton7_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton7 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+
 exc = cellstr(handles.listbox2.String);
 ref = cellstr(handles.edit1.String);
 save ([handles.data.pathstr '\default.mat'], 'exc', 'ref');
