@@ -4,9 +4,9 @@
 % (2014) to EEG data in different formats.
 %--------------------------------------------------------------------------
 %
-% Copyright (C) 2017    Version 1.0     Release date: 03 October 2017
+% Copyright (C) 2017-8    Version 2.0.0     Release date: 13 August 2018
 %
-% Authors: Dr Phil A. Duke, Dr Giorgio Fuggetta, and Dr Kyle Q. Lepage
+% Authors: Dr Phil Duke, Dr Giorgio Fuggetta, and Dr Kyle Q. Lepage
 %
 % Dr Phil A. Duke, University of Leicester, Leicester, UK 
 % Email: pad11@leicester.ac.uk 
@@ -24,7 +24,7 @@
 % This script/program is free software; you can redistribute it and/or 
 % modify it under the terms of the GNU General Public License as published
 % by the Free Software Foundation; either version 3 of the License, or
-% (at your option) any later version. For further information go to:
+% (at your option) any later version. For further infomration go to:
 % https://www.gnu.org/licenses/quick-guide-gplv3.html
 %
 % This program is distributed in the hope that it will be useful,
@@ -53,13 +53,13 @@
 %--------------------------------------------------------------------------
 % PRE-REQUISITES BEFORE RUNNING APPLY rCAR
 %
-% This script uses MATLAB's Parallel Computing Toolbox, so make sure that
-% this toolbox is installed. Otherwise, you will receive the following message:
-% "Unable to checkout a license for the Parallel Computing Toolbox". 
+% This script uses Matlab's Parallel Computing Toolbox, so make sure that
+% this toolbox is installed. Otherwise you will recieve the follwong message:
+% Unable to checkout a license for the Parallel Computing Toolbox". 
 %
 % Apply rCAR uses functions from the software EEGLAB, so make sure you have
 % installed EEGLAB (https://sccn.ucsd.edu/eeglab/index.php) and that both
-% the Apply rCAR code folder and the EEGLAB folder are set in MATLAB's search
+% the Apply_rCAR code folder and the EEGLAB folder are set in MATLAB's search
 % path.
 %
 % To import Brain Vision Analyser (BVA), Neuroscan continuous, Neuroscan
@@ -87,7 +87,7 @@
 % BVA Vectorized IEEE 32 Bit Floating Point Format
 %
 % NOTE: if the EEG data from BVA is segmented, then it is necessary to
-% convert it into continuous format before exporting it in one of the supported
+% convert it into continous format before exporting it in one of the supported
 % BVA formats. You could use the provided "Marker Remove new segment.vabs"
 % solution for this purpose. This file needs to be copied in Analyser's 
 % solutions folder to be used (e.g. C:\Vision\Analyzer2\Solutions\Markers). 
@@ -111,6 +111,9 @@
 %
 %
 % 5) BioSemi format (*.bdf)
+% 
+% 
+% 6) EEGLAB format (*.set)
 %
 %
 %--------------------------------------------------------------------------
@@ -125,6 +128,7 @@
 % Load Neuroscan Curry .CDT and save as Curry .CDT
 % Load EDF or EDF+ and save as EDF (not EDF+).
 % Load BioSemi .BDF and save as BioSemi.BDF
+% Load EEGLAB .SET and save as EEGLAB .SET
 %
 % It does not convert between formats.
 %
@@ -133,16 +137,16 @@
 % INSTRUCTIONS ON HOW TO USE APPLY rCAR
 %
 % After you have opened MATLAB which includes parallel processing toolbox
-% and added to "set path" both EEGLAB and Apply rCAR folders, run the 
+% and added to "set path" both EEGLAB and Apply rCAR folrers, run the 
 % script "Apply_rCAR.m".
 %
-% First select the file(s) to process. The application will display the 
-% channel labels present in the file(s).
+% First select a file to proceess. The application will display the channel
+% labels present in the file.
 %
 % Select any channels to exclude and a derived re-reference channel (if
 % necessary) from the channel list.
 %
-% You can save and load a default list of excluded channels and re-reference
+% You can save and load a default list of excluded chanels and re-refrence
 % channel.
 %
 % The derived re-reference channel is the estimate of the reference channel

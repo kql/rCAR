@@ -22,7 +22,7 @@ function varargout = Apply_rCAR(varargin)
 
 % Edit the above text to modify the response to help Apply_rCAR
 
-% Last Modified by GUIDE v2.5 02-Oct-2017 13:16:24
+% Last Modified by GUIDE v2.5 08-Nov-2017 12:33:05
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -149,6 +149,7 @@ function edit1_Callback(hObject, eventdata, handles)
 %        str2double(get(hObject,'String')) returns contents of edit1 as a double
 
 
+
 % --- Executes during object creation, after setting all properties.
 function edit1_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to edit1 (see GCBO)
@@ -166,11 +167,15 @@ end
 % --- Executes on button press in pushbutton1.
 % select input file(s)
 function pushbutton1_Callback(hObject, eventdata, handles)
+% hObject    handle to edit1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
 
 [fn pn]=uigetfile({'*.bdf','BioSemi (*.bdf)';...
     '*.cdt','NeuroScan CURRY (*.cdt)';...
     '*.cnt','NeuroScan continuous (*.cnt)';...
     '*.edf','European Data Format (*.edf)';...
+    '*.set','EEGLAB format (*.set)';...
     '*.vhdr','BrainAmp / BrainVision (*.vhdr)'}, 'Select Input Files', 'MultiSelect', 'on' );
 
 if ~isequal(fn,0) % proceed only if a file is selected
@@ -183,7 +188,6 @@ if ~isequal(fn,0) % proceed only if a file is selected
     end
     
     handles.data.totalFiles = totalFiles;
-    % handles.data.output_folder = output_folder;
     handles.data.fn = fn;
     handles.data.pn = pn;
     
@@ -197,6 +201,7 @@ if ~isequal(fn,0) % proceed only if a file is selected
     % load input file according to its extension
     switch input_file_extension
         case '.vhdr'
+            
             EEG = pop_loadbv(pn, input_filename, 1);
             
             % get EEG data
@@ -276,6 +281,24 @@ if ~isequal(fn,0) % proceed only if a file is selected
                 chs0{c} = char(EEG.chanlocs(c).labels);
             end
             chs = char(chs0);
+            
+        case '.set'
+            
+            EEG = pop_loadset(input_filename, pn );
+            
+            % get EEG data
+            % IMPORTANT - need to make sure data are double precision.
+            data = double(EEG.data);
+            
+            origdata = EEG.data;
+            % get number of channels
+            n_ch = EEG.nbchan;
+            
+            % get channel names
+            for c=1:1:n_ch
+                chs0{c} = char(EEG.chanlocs(c).labels);
+            end
+            chs = char(chs0);
     end
     
     handles.data.n_ch=n_ch;
@@ -317,6 +340,12 @@ re_reference_reference_channel_no = find(strcmp(cellstr(handles.listbox1.String)
 %     re_reference_reference_channel_no=0;
 % end
 output_folder = uigetdir(handles.data.pathstr, 'Select a folder to save output');
+
+if (handles.checkbox1.Value==1)
+    saveBDFasBVA=1;
+else
+    saveBDFasBVA=0;
+end
 
 q=cellstr(handles.popupmenu1.String);
 n_threads = str2double(q(handles.popupmenu1.Value))
@@ -403,7 +432,6 @@ load ([handles.data.pathstr '\default.mat'], 'exc', 'ref');
 handles.listbox2.Value=1;
 handles.listbox2.String = exc;
 handles.edit1.String = ref;
-
 guidata(hObject,handles);
 
 
@@ -414,7 +442,6 @@ function pushbutton7_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton7 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
 exc = cellstr(handles.listbox2.String);
 ref = cellstr(handles.edit1.String);
 save ([handles.data.pathstr '\default.mat'], 'exc', 'ref');
@@ -477,4 +504,10 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 
+% --- Executes on button press in checkbox1.
+function checkbox1_Callback(hObject, eventdata, handles)
+% hObject    handle to checkbox1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
 
+% Hint: get(hObject,'Value') returns toggle state of checkbox1

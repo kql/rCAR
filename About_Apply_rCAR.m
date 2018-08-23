@@ -52,8 +52,8 @@ autoadjust=0;
 aboutfig=0;
 
 if nargin == 0 || (~iscellstr(varargin{1}) && ~ischar(varargin{1}))
-    info=regexp('$Id: 1.0 03-10-2017 $','^.* (?<revision>[0.1-9.0]+) (?<date>[0-9\-]+) .*','names');
-    helptxt={upper(mfilename),'',['Version: ' info.revision],'',['Release Date: ' info.date],'',[char(169) ' 2017 Dr Phil A. Duke, Dr Giorgio Fuggetta, Dr Kyle Q. Lepage ' ], '','http://www.github.com/kql/rCAR'};
+    info=regexp('$Id: 2.0.0 13-08-2018 $','^.* (?<revision>[0.1-9.0]+) (?<date>[0-9\-]+) .*','names');
+    helptxt={upper(mfilename),'',['Version: ' info.revision],'',['Release Date: ' info.date],'',[char(169) ' 2017-8 Dr Phil A. Duke, Dr Giorgio Fuggetta, Dr Kyle Q. Lepage ' ], '','http://www.github.com/kql/rCAR'};
     title='About Apply rCAR';
     autoadjust=1;
     aboutfig=1;

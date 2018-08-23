@@ -4,7 +4,7 @@
 % (2014) to EEG data in different formats.
 %--------------------------------------------------------------------------
 %
-% Copyright (C) 2017    Version 1.0     Release date: 03 October 2017
+% Copyright (C) 2017-8    Version 2.0.0     Release date: 13 August 2018
 %
 % Authors: Dr Phil Duke, Dr Giorgio Fuggetta, and Dr Kyle Q. Lepage
 %
@@ -111,8 +111,11 @@
 %
 %
 % 5) BioSemi format (*.bdf)
+% 
+% 
+% 6) EEGLAB format (*.set)
 %
-%
+% 
 %--------------------------------------------------------------------------
 % SUPPORTED OUTPUT FILES
 %
@@ -124,7 +127,8 @@
 % Load Neuroscan .CNT and save as BVA
 % Load Neuroscan Curry .CDT and save as Curry .CDT
 % Load EDF or EDF+ and save as EDF (not EDF+).
-% Load BioSemi .BDF and save as BioSemi.BDF
+% Load BioSemi .BDF and save as BioSemi .BDF
+% Load EEGLAB .SET and save as EEGLAB .SET
 %
 % It does not convert between formats.
 %
@@ -306,6 +310,25 @@ for file_no=1:totalFiles
             end
             chs = char(chs0);
             
+            
+        case '.set'
+            
+            EEG = pop_loadset(input_filename, pn );
+            
+            % get EEG data
+            % IMPORTANT - need to make sure data are double precision.
+            data = double(EEG.data);
+            
+            origdata = EEG.data;
+            % get number of channels
+            n_ch = EEG.nbchan;
+            
+            % get channel names
+            for c=1:1:n_ch
+                chs0{c} = char(EEG.chanlocs(c).labels);
+            end
+            chs = char(chs0);
+            
     end
     
     
@@ -353,6 +376,7 @@ for file_no=1:totalFiles
     %  d_rcar                                      = d_rcar + (ones(n,1)*data_mean' ); % original array format
     d_rcar                                      = d_rcar + ( data_mean*ones(1,n));
     
+    ref_est_rcar = - ref_est_rcar; %reverse the sign of the reference channel data.
     
     % Plotting.d
     if plotData
@@ -405,7 +429,12 @@ for file_no=1:totalFiles
         case {'.bdf'}
             % replace original data with re-referenced data
             EEG.data = output_data;
-            pop_writeeeg(EEG, [output_path_and_filename '.bdf'],'TYPE','BDF');
+            
+            if saveBDFasBVA==0
+                pop_writeeeg(EEG, [output_path_and_filename '.bdf'],'TYPE','BDF');
+            else
+                pop_writebva(EEG, output_path_and_filename);
+            end
             
         case {'.cdt'}
             % replace original data with re-referenced data
@@ -444,6 +473,12 @@ for file_no=1:totalFiles
                 header = rmfield(header,'events'); % which can create a distorsion of data as part of EDF file.
             end
             lab_write_edf(output_path_and_filename, output_data, header);
+            
+            
+        case {'.set',}
+            % replace original data with re-referenced data
+            EEG.data = output_data;
+            pop_saveset(EEG, 'filename',  filename_only,'filepath',output_folder);         
     end
 end
 

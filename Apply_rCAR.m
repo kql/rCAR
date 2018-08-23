@@ -1,5 +1,6 @@
 function varargout = Apply_rCAR(varargin)
-% APPLY_RCAR MATLAB code for Apply_rCAR.fig
+% APPLY_RCAR MATLAB code for Apply_rCAR.fig% 
+% 
 %      APPLY_RCAR, by itself, creates a new APPLY_RCAR or raises the existing
 %      singleton*.
 %
@@ -22,9 +23,11 @@ function varargout = Apply_rCAR(varargin)
 
 % Edit the above text to modify the response to help Apply_rCAR
 
-% Last Modified by GUIDE v2.5 02-Oct-2017 13:16:24
+% Last Modified by GUIDE v2.5 08-Nov-2017 12:33:05
 
 % Begin initialization code - DO NOT EDIT
+
+
 gui_Singleton = 1;
 gui_State = struct('gui_Name',       mfilename, ...
     'gui_Singleton',  gui_Singleton, ...
@@ -175,7 +178,8 @@ function pushbutton1_Callback(hObject, eventdata, handles)
     '*.cdt','NeuroScan CURRY (*.cdt)';...
     '*.cnt','NeuroScan continuous (*.cnt)';...
     '*.edf','European Data Format (*.edf)';...
-    '*.vhdr','Brain vision Analyzer BVA (*.vhdr)'}, 'Select Input Files', 'MultiSelect', 'on' );
+    '*.set','EEGLAB format (*.set)';...
+    '*.vhdr','BrainAmp / BrainVision (*.vhdr)'}, 'Select Input Files', 'MultiSelect', 'on' );
 
 if ~isequal(fn,0) % proceed only if a file is selected
     
@@ -200,6 +204,7 @@ if ~isequal(fn,0) % proceed only if a file is selected
     % load input file according to its extension
     switch input_file_extension
         case '.vhdr'
+            
             EEG = pop_loadbv(pn, input_filename, 1);
             
             % get EEG data
@@ -279,6 +284,24 @@ if ~isequal(fn,0) % proceed only if a file is selected
                 chs0{c} = char(EEG.chanlocs(c).labels);
             end
             chs = char(chs0);
+         
+            
+        case '.set'         
+            EEG = pop_loadset(input_filename, pn );
+            
+            % get EEG data
+            % IMPORTANT - need to make sure data are double precision.
+            data = double(EEG.data);
+            
+            origdata = EEG.data;
+            % get number of channels
+            n_ch = EEG.nbchan;
+            
+            % get channel names
+            for c=1:1:n_ch
+                chs0{c} = char(EEG.chanlocs(c).labels);
+            end
+            chs = char(chs0);
     end
     
     handles.data.n_ch=n_ch;
@@ -320,6 +343,12 @@ re_reference_reference_channel_no = find(strcmp(cellstr(handles.listbox1.String)
 %     re_reference_reference_channel_no=0;
 % end
 output_folder = uigetdir(handles.data.pathstr, 'Select a folder to save output');
+
+if (handles.checkbox1.Value==1)
+    saveBDFasBVA=1;
+else
+    saveBDFasBVA=0;
+end
 
 q=cellstr(handles.popupmenu1.String);
 n_threads = str2double(q(handles.popupmenu1.Value))
@@ -478,4 +507,10 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 
+% --- Executes on button press in checkbox1.
+function checkbox1_Callback(hObject, eventdata, handles)
+% hObject    handle to checkbox1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
 
+% Hint: get(hObject,'Value') returns toggle state of checkbox1
